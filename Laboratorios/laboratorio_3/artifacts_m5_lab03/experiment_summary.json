@@ -1,0 +1,27 @@
+{
+  "experiment_info": {
+    "dataset": "M5 Forecasting - Walmart Sales",
+    "series_id": "FOODS_3_090_CA_3_validation",
+    "input_length": 60,
+    "horizon": 14,
+    "train_samples": 1640,
+    "val_samples": 27,
+    "test_samples": 27
+  },
+  "best_results": {
+    "baseline_semanal": {
+      "MAE": 18.881,
+      "RMSE": 44.258,
+      "sMAPE": 0.97
+    },
+    "best_neural_model": "GRU_Bidireccional",
+    "best_neural_mae": 39.582332611083984,
+    "ensemble_mae": 48.60673522949219
+  },
+  "conclusions": [
+    "Los baselines simples superan a las RNNs en este dataset espec\u00edfico",
+    "GRU Bidireccional es el mejor modelo neural con MAE=39.582",
+    "La alta volatilidad y muchos ceros favorecen m\u00e9todos simples",
+    "Se necesitan m\u00e1s datos o mejores features para superar baselines"
+  ]
+}
