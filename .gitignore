@@ -2,3 +2,5 @@ Laboratorios/Laboratorio_3_IA/m5-forecasting-accuracy/*.csv
 Laboratorios/laboratorio_3/m5-forecasting-accuracy/sales_train_evaluation.csv
 Laboratorios/laboratorio_3/m5-forecasting-accuracy/sales_train_validation.csv
 Laboratorios/laboratorio_3/m5-forecasting-accuracy/sell_prices.csv
+Laboratorios/laboratorio_4/runs/dcgan_pretrained/checkpoints/*.pt
+Laboratorios/laboratorio_4/runs/dcgan_pretrained_nb/checkpoints/*.pt
