@@ -1,0 +1,155 @@
+# Ejemplos de Configuración DCGAN
+# ================================
+
+# Este archivo contiene ejemplos de comandos para diferentes casos de uso
+# Copia y pega los comandos en la terminal para ejecutar
+
+# =============================================================================
+# CONFIGURACIONES BÁSICAS
+# =============================================================================
+
+# 1. Entrenamiento rápido de prueba (5 minutos aprox)
+python train_dcgan_pretrained.py --epochs 2 --batch-size 32 --log-every 20
+
+# 2. Entrenamiento básico con discriminador clásico
+python train_dcgan_pretrained.py --disc dcgan --epochs 15
+
+# 3. Entrenamiento con ResNet18 preentrenado
+python train_dcgan_pretrained.py --disc resnet18 --epochs 20 --label-smoothing
+
+# =============================================================================
+# CONFIGURACIONES PARA DIFERENTES DATASETS
+# =============================================================================
+
+# 4. FashionMNIST (dataset por defecto)
+python train_dcgan_pretrained.py --dataset fashion_mnist --epochs 25
+
+# 5. MNIST clásico
+python train_dcgan_pretrained.py --dataset mnist --epochs 20 --disc resnet18
+
+# 6. KMNIST (caracteres japoneses)
+python train_dcgan_pretrained.py --dataset kmnist --epochs 20 --disc mobilenet_v2
+
+# 7. CIFAR-10 (más desafiante)
+python train_dcgan_pretrained.py --dataset cifar10 --epochs 50 --disc efficientnet_b0 --batch-size 64
+
+# =============================================================================
+# CONFIGURACIONES AVANZADAS
+# =============================================================================
+
+# 8. Configuración estable con regularización
+python train_dcgan_pretrained.py \
+    --disc resnet18 \
+    --epochs 30 \
+    --label-smoothing \
+    --dropout 0.3 \
+    --noise-std 0.05 \
+    --use-scheduler
+
+# 9. Configuración de alta calidad
+python train_dcgan_pretrained.py \
+    --disc efficientnet_b0 \
+    --epochs 50 \
+    --batch-size 64 \
+    --lr-g 0.0001 \
+    --lr-d 0.0002 \
+    --label-smoothing \
+    --real-label-smooth 0.95 \
+    --fake-label-smooth 0.05 \
+    --dropout 0.4 \
+    --noise-std 0.1 \
+    --label-noise 0.02 \
+    --weight-decay 1e-4 \
+    --use-scheduler \
+    --grad-clip 1.0
+
+# 10. Entrenamiento ligero con MobileNet
+python train_dcgan_pretrained.py \
+    --disc mobilenet_v2 \
+    --epochs 25 \
+    --batch-size 128 \
+    --label-smoothing \
+    --dropout 0.2
+
+# =============================================================================
+# CONFIGURACIONES PARA HARDWARE LIMITADO
+# =============================================================================
+
+# 11. Para CPU (sin GPU)
+python train_dcgan_pretrained.py --cpu --epochs 10 --batch-size 16
+
+# 12. Para GPU con poca memoria
+python train_dcgan_pretrained.py --batch-size 32 --num-workers 2
+
+# 13. Entrenamiento ultra rápido (solo prueba)
+python train_dcgan_pretrained.py --epochs 1 --batch-size 16 --log-every 10
+
+# =============================================================================
+# EVALUACIÓN Y ANÁLISIS
+# =============================================================================
+
+# 14. Solo evaluación (cargar modelo entrenado)
+python train_dcgan_pretrained.py --eval-only --checkpoint runs/dcgan_pretrained/checkpoints/latest.pt
+
+# 15. Generar 128 muestras de evaluación
+python train_dcgan_pretrained.py --eval-only --num-samples 128
+
+# 16. Reanudar entrenamiento interrumpido
+python train_dcgan_pretrained.py --resume --epochs 50
+
+# =============================================================================
+# COMPARACIÓN DE DISCRIMINADORES
+# =============================================================================
+
+# 17. Comparar todos los discriminadores (ejecutar uno por uno)
+python train_dcgan_pretrained.py --disc dcgan --epochs 15 --out-dir runs/compare_dcgan
+python train_dcgan_pretrained.py --disc resnet18 --epochs 15 --out-dir runs/compare_resnet18
+python train_dcgan_pretrained.py --disc mobilenet_v2 --epochs 15 --out-dir runs/compare_mobilenet
+python train_dcgan_pretrained.py --disc efficientnet_b0 --epochs 15 --out-dir runs/compare_efficientnet
+python train_dcgan_pretrained.py --disc vgg11_bn --epochs 15 --out-dir runs/compare_vgg
+
+# =============================================================================
+# CONFIGURACIONES EXPERIMENTALES
+# =============================================================================
+
+# 18. Sin pesos preentrenados
+python train_dcgan_pretrained.py --disc resnet18 --no-pretrained --epochs 25
+
+# 19. Learning rates diferenciados (discriminador más lento)
+python train_dcgan_pretrained.py --lr-g 0.0002 --lr-d 0.0001 --epochs 25
+
+# 20. Máxima regularización
+python train_dcgan_pretrained.py \
+    --label-smoothing \
+    --dropout 0.5 \
+    --noise-std 0.15 \
+    --label-noise 0.05 \
+    --grad-clip 0.5 \
+    --weight-decay 1e-3
+
+# =============================================================================
+# CONFIGURACIONES DE MONITOREO
+# =============================================================================
+
+# 21. Logging muy detallado
+python train_dcgan_pretrained.py --log-every 25 --save-every 2 --plot-every 2
+
+# 22. Sin plotting (para servidores sin display)
+python train_dcgan_pretrained.py --plot-every 0
+
+# 23. Guardado frecuente para experimentos largos
+python train_dcgan_pretrained.py --epochs 100 --save-every 5
+
+# =============================================================================
+# NOTAS Y CONSEJOS
+# =============================================================================
+
+# - Comienza con configuraciones básicas (#1-3) para familiarizarte
+# - Para CPU usa batch-size pequeño (16-32) y pocas épocas
+# - Para GPU potente puedes usar batch-size 128+ y más épocas
+# - Si el discriminador domina, baja --lr-d y/o aumenta --dropout
+# - Si el generador domina, aumenta --lr-d y/o reduce regularización
+# - Para mejores resultados usa --label-smoothing y --dropout 0.2-0.4
+# - EfficientNet-B0 suele dar los mejores resultados pero es más lento
+# - MobileNet-V2 es un buen balance entre velocidad y calidad
+# - Siempre revisa las imágenes en runs/*/samples/ para evaluar progreso

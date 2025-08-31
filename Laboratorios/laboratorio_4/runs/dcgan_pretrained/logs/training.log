@@ -1,0 +1,15 @@
+2025-08-30 20:14:59,880 - INFO - Iniciando entrenamiento con configuración: {'dataset': 'fashion_mnist', 'data_dir': './data', 'out_dir': './runs/dcgan_pretrained', 'epochs': 1, 'batch_size': 16, 'num_workers': 4, 'z_dim': 100, 'image_size': 64, 'g_channels': 64, 'd_channels': 64, 'dropout': 0.2, 'disc': 'dcgan', 'no_pretrained': False, 'lr_g': 0.0002, 'lr_d': 0.0002, 'beta1': 0.5, 'beta2': 0.999, 'weight_decay': 1e-05, 'use_scheduler': False, 'label_smoothing': False, 'real_label_smooth': 0.9, 'fake_label_smooth': 0.1, 'noise_std': 0.0, 'label_noise': 0.0, 'grad_clip': 0.0, 'seed': 42, 'cpu': False, 'log_every': 10, 'save_every': 5, 'plot_every': 5, 'resume': False, 'eval_only': False, 'checkpoint': '', 'num_samples': 64}
+2025-08-30 20:14:59,896 - INFO - Cargando dataset: fashion_mnist
+2025-08-30 20:15:29,894 - INFO - Dataset cargado: 60,000 imágenes, 3,750 batches
+2025-08-30 20:15:29,895 - INFO - Inicializando modelos...
+2025-08-30 20:15:29,935 - INFO - Usando discriminador DCGAN clásico
+2025-08-30 20:15:29,971 - INFO - Parámetros - Generador: 3,576,704, Discriminador: 2,765,568, Total: 6,342,272
+2025-08-30 20:15:29,973 - INFO - Etiquetas: real=1.0, fake=0.0
+2025-08-30 20:15:29,974 - INFO - Iniciando loop de entrenamiento...
+2025-08-30 20:36:13,986 - INFO - Época 1/1 | D_loss: 0.3269 | G_loss: 3.7731 | Tiempo: 1244.01s
+2025-08-30 20:36:14,295 - INFO - Checkpoint guardado: epoch_001.pt
+2025-08-30 20:36:14,296 - INFO - Entrenamiento completado en 1244.32s (20.74 minutos)
+2025-08-30 20:43:12,731 - INFO - Resultados guardados en: runs\dcgan_pretrained
+2025-08-30 20:43:12,731 - INFO - - Muestras: runs\dcgan_pretrained\samples
+2025-08-30 20:43:12,731 - INFO - - Checkpoints: runs\dcgan_pretrained\checkpoints
+2025-08-30 20:43:12,732 - INFO - - Logs: runs\dcgan_pretrained\logs
